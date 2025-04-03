@@ -1521,21 +1521,24 @@ window.particlesJS = function(tag_id, params){
 
 window.particlesJS.load = function(tag_id, path_config_json, callback){
 
-  /* load json config */
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', path_config_json);
-  xhr.onreadystatechange = function (data) {
-    if(xhr.readyState == 4){
-      if(xhr.status == 200){
-        var params = JSON.parse(data.currentTarget.response);
-        window.particlesJS(tag_id, params);
-        if(callback) callback();
-      }else{
-        console.log('Error pJS - XMLHttpRequest status: '+xhr.status);
-        console.log('Error pJS - File config not found');
-      }
-    }
+  /* ---- stats.js config ---- */
+  
+  var count_particles, stats, update;
+  stats = new Stats;
+  stats.setMode(0);
+  stats.domElement.style.position = 'absolute';
+  stats.domElement.style.left = '0px';
+  stats.domElement.style.top = '0px';
+  document.body.appendChild(stats.domElement);
+  count_particles = document.querySelector('.js-count-particles');
+  update = function() {
+	stats.begin();
+	stats.end();
+	if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
+	  count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
+	}
+	requestAnimationFrame(update);
   };
-  xhr.send();
+  requestAnimationFrame(update);
 
 };
