@@ -1519,12 +1519,12 @@ window.particlesJS = function(tag_id, params){
 
 };
 
-window.particlesJS.load = function(tag_id, path_config_json, callback){
+window.particlesJS.load = function(){
 
   /* ---- stats.js config ---- */
   
   var count_particles, stats, update;
-  stats = new Stats;
+  stats = new stats;
   stats.setMode(0);
   stats.domElement.style.position = 'absolute';
   stats.domElement.style.left = '0px';
