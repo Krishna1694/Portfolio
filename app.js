@@ -31,117 +31,121 @@ menu_item.forEach((item) => {
 
 /* ---- particles.js config ---- */
 
-particlesJS("particles-js", {
-	"particles": {
-	  "number": {
-		"value": 130,
-		"density": {
-		  "enable": true,
-		  "value_area": 800
-		}
-	  },
-	  "color": {
-		"value": "#ffffff"
-	  },
-	  "shape": {
-		"type": "circle",
-		"stroke": {
-		  "width": 0,
-		  "color": "#000000"
+function initParticles() {
+	let particleSettings = {
+		particles: {
+			number: {
+				value: 130, 
+				density: {
+					enable: true,
+					value_area: 800
+				}
+			},
+			color: {
+				value: "#ffffff"
+			},
+			shape: {
+				type: "circle"
+			},
+			opacity: {
+				value: 0.5
+			},
+			size: {
+				value: 3,
+				random: true
+			},
+			line_linked: {
+				enable: true,
+				distance: 150,
+				color: "#ffffff",
+				opacity: 0.4,
+				width: 1
+			},
+			move: {
+				enable: true,
+				speed: 6,
+				direction: "none",
+				random: false,
+				straight: false,
+				out_mode: "out",
+				bounce: false
+			}
 		},
-		"polygon": {
-		  "nb_sides": 5
+		interactivity: {
+			detect_on: "canvas",
+			events: {
+				onhover: {
+					enable: true,
+					mode: "grab"
+				},
+				onclick: {
+					enable: true,
+					mode: "push"
+				},
+				resize: true
+			},
+			modes: {
+				grab: {
+					distance: 170,
+					line_linked: {
+						opacity: 1
+					}
+				}
+			}
 		},
-		"image": {
-		  "src": "img/github.svg",
-		  "width": 100,
-		  "height": 100
-		}
-	  },
-	  "opacity": {
-		"value": 0.5,
-		"random": false,
-		"anim": {
-		  "enable": false,
-		  "speed": 1,
-		  "opacity_min": 0.1,
-		  "sync": false
-		}
-	  },
-	  "size": {
-		"value": 3,
-		"random": true,
-		"anim": {
-		  "enable": false,
-		  "speed": 40,
-		  "size_min": 0.1,
-		  "sync": false
-		}
-	  },
-	  "line_linked": {
-		"enable": true,
-		"distance": 150,
-		"color": "#ffffff",
-		"opacity": 0.4,
-		"width": 1
-	  },
-	  "move": {
-		"enable": true,
-		"speed": 6,
-		"direction": "none",
-		"random": false,
-		"straight": false,
-		"out_mode": "out",
-		"bounce": false,
-		"attract": {
-		  "enable": false,
-		  "rotateX": 600,
-		  "rotateY": 1200
-		}
-	  }
-	},
-	"interactivity": {
-	  "detect_on": "canvas",
-	  "events": {
-		"onhover": {
-		  "enable": true,
-		  "mode": "grab"
-		},
-		"onclick": {
-		  "enable": true,
-		  "mode": "push"
-		},
-		"resize": true
-	  },
-	  "modes": {
-		"grab": {
-		  "distance": 170,
-		  "line_linked": {
-			"opacity": 1
-		  }
-		},
-		"bubble": {
-		  "distance": 400,
-		  "size": 40,
-		  "duration": 2,
-		  "opacity": 8,
-		  "speed": 3
-		},
-		"repulse": {
-		  "distance": 200,
-		  "duration": 0.4
-		},
-		"push": {
-		  "particles_nb": 4
-		},
-		"remove": {
-		  "particles_nb": 2
-		}
-	  }
-	},
-	"retina_detect": true
-  });
-  
+		retina_detect: true
+	};
+
+	// Adjust particle settings based on screen size
+	if (window.innerWidth < 768) {  // Small screens
+		particleSettings.particles.number.value = 80;
+		particleSettings.particles.size.value = 3;
+		particleSettings.particles.move.speed = 5;
+	} else if (window.innerWidth < 1024) { // Medium screens
+		particleSettings.particles.number.value = 100;
+		particleSettings.particles.size.value = 3;
+		particleSettings.particles.move.speed = 5;
+	} else { // Large screens
+		particleSettings.particles.number.value = 130;
+		particleSettings.particles.size.value = 3;
+		particleSettings.particles.move.speed = 5;
+	}
+
+	// Initialize particles with the updated settings
+	particlesJS("particles-js", particleSettings);
+}
+
+// Initialize particles on page load
+window.onload = initParticles;
+
+// Reinitialize particles on window resize
+window.addEventListener("resize", function() {
+	initParticles();
+});
+
+// Enable click-to-copy for contact items
+document.querySelectorAll('.contact-item').forEach(item => {
+	item.style.cursor = 'pointer';
+	item.title = 'Click to copy';
+
+	const h2 = item.querySelector('.contact-info h2');
+
+	item.addEventListener('click', () => {
+		if (!h2) return;
+
+		const originalHTML = h2.innerHTML;
+		const text = h2.innerText;
+
+		navigator.clipboard.writeText(text).then(() => {
+			h2.innerHTML = '<span style="color: black;">Copied!</span>';
+			setTimeout(() => {
+				h2.innerHTML = originalHTML;
+			}, 1500);
+		}).catch(err => {
+			console.error('Failed to copy text: ', err);
+		});
+	});
+});
   
 // Enable click-to-copy on contact info
 document.querySelectorAll('.contact-item').forEach(item => {
