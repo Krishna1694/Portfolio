@@ -19,8 +19,8 @@ document.addEventListener('scroll', () => {
 
 menu_item.forEach((item) => {
 	item.addEventListener('click', () => {
-		hamburger.classList.toggle('active');
-		mobile_menu.classList.toggle('active');
+		hamburger.classList.remove('active');
+		mobile_menu.classList.remove('active');
 	});
 });
 
@@ -143,3 +143,26 @@ particlesJS("particles-js", {
   });
   
   
+// Enable click-to-copy on contact info
+document.querySelectorAll('.contact-item').forEach(item => {
+	item.style.cursor = 'pointer';
+	item.title = 'Click to copy';
+
+	const h2 = item.querySelector('.contact-info h2');
+
+	item.addEventListener('click', () => {
+		if (!h2) return;
+
+		const originalHTML = h2.innerHTML;
+		const text = h2.innerText;
+
+		navigator.clipboard.writeText(text).then(() => {
+			h2.innerHTML = '<span style="color: black;">Copied!</span>';
+			setTimeout(() => {
+				h2.innerHTML = originalHTML;
+			}, 1500);
+		}).catch(err => {
+			console.error('Failed to copy text: ', err);
+		});
+	});
+});
