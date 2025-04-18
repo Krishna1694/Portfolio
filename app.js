@@ -153,17 +153,31 @@ document.querySelectorAll('.contact-item').forEach(item => {
 	item.title = 'Click to copy';
 
 	const h2 = item.querySelector('.contact-info h2');
+	let isCooldown = false;
 
 	item.addEventListener('click', () => {
-		if (!h2) return;
+		if (!h2 || isCooldown) return;
 
 		const originalHTML = h2.innerHTML;
 		const text = h2.innerText;
 
 		navigator.clipboard.writeText(text).then(() => {
-			h2.innerHTML = '<span style="color: black;">Copied!</span>';
+			isCooldown = true;
+
+			const feedbackSpan = document.createElement('span');
+			feedbackSpan.textContent = 'Copied!';
+			feedbackSpan.classList.add('copied-feedback');
+			h2.innerHTML = ''; // Clear h2
+			h2.appendChild(feedbackSpan);
+
+			// Trigger animation
+			setTimeout(() => {
+				feedbackSpan.classList.add('show');
+			}, 10);
+
 			setTimeout(() => {
 				h2.innerHTML = originalHTML;
+				isCooldown = false;
 			}, 1500);
 		}).catch(err => {
 			console.error('Failed to copy text: ', err);
