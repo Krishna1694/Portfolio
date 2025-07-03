@@ -9,11 +9,11 @@ hamburger.addEventListener('click', () => {
 });
 
 document.addEventListener('scroll', () => {
-	var scroll_position = window.scrollY;
+	const scroll_position = window.scrollY;
 	if (scroll_position > 250) {
-		header.style.backgroundColor = '#29323c';
+		header.classList.add('scrolled');
 	} else {
-		header.style.backgroundColor = 'transparent';
+		header.classList.remove('scrolled');
 	}
 });
 
@@ -119,8 +119,12 @@ function initParticles() {
 window.onload = initParticles;
 
 // Reinitialize particles on window resize
+let resizeTimeout;
 window.addEventListener("resize", function() {
-	initParticles();
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    initParticles();
+  }, 300);
 });
 
 // Enable click-to-copy for contact items
