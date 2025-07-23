@@ -4,6 +4,10 @@
 	margin: 0;
 	box-sizing: border-box;
 }
+body {
+  background-color: black;
+  color: #00ff00; /* neon green for default text */
+}
 html {
 	font-size: 10px;
 	font-family: 'Space Grotesk', sans-serif;
@@ -11,6 +15,7 @@ html {
 }
 a {
 	text-decoration: none;
+	color: #00ff00;
 }
 .container {
 	min-height: 100vh;
@@ -25,7 +30,7 @@ img {
 	object-fit: cover;
 }
 p {
-	color: black;
+	color: #00ff00;
 	font-size: 1.4rem;
 	margin-top: 5px;
 	line-height: 2.5rem;
@@ -47,10 +52,14 @@ p {
   border-radius: 8px;
   box-shadow: 0 0 8px rgba(220, 20, 60, 0.2);
 }
+section {
+	position: relative;
+	z-index: 0;
+}
 .section-title {
 	font-size: 4rem;
 	font-weight: 300;
-	color: black;
+	color: white;
 	margin-bottom: 10px;
 	text-transform: uppercase;
 	letter-spacing: 0.2rem;
@@ -59,7 +68,6 @@ p {
 .section-title span {
 	color: crimson;
 }
-
 .cta {
 	display: inline-block;
 	padding: 10px 30px;
@@ -85,14 +93,21 @@ p {
 .brand h1 span {
 	color: crimson;
 }
-
-/* Alternate background color for sections */
-.alt-section:nth-of-type(even) {
-	background: linear-gradient(60deg, #1c2228 0%, #485563 100%);
+#matrix {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* behind everything */
+  pointer-events: none; /* makes it non-clickable */
 }
 
+/* Alternate background color for sections */
+.alt-section:nth-of-type(even),
 .alt-section:nth-of-type(odd) {
-	background-color: #ffffff; /* white */
+  background: transparent;
+  color: #00ff00;
 }
 
 /* Header section */
@@ -110,7 +125,8 @@ p {
 	transition: 0.3s ease background-color;
 }
 #header .header.scrolled {
-  background-color: #29323c;
+	background: rgba(0, 0, 0, 0.6);
+	backdrop-filter: blur(3px); 
 }
 #header .nav-bar {
 	display: flex;
@@ -230,6 +246,7 @@ p {
 	width: 100%;
 	height: 100vh;
 	position: absolute;
+	z-index: 1;
 }
 #hero {
 	background-image: url(./img/header_bg.jpg);
@@ -247,7 +264,7 @@ p {
 	width: 100%;
 	background-color: black;
 	opacity: 0.7;
-	z-index: -1;
+	z-index: 0;
 }
 #hero .hero {
 	max-width: 1200px;
@@ -263,6 +280,7 @@ p {
 	color: transparent;
 	animation: text_reveal 0.5s ease forwards;
 	animation-delay: 1s;
+	z-index: 1;
 }
 #hero h1:nth-child(1) {
 	animation-delay: 1s;
@@ -359,6 +377,19 @@ p {
 /* End Services Section */
 
 /* Projects section */
+#projects {
+  position: relative;
+}
+#projects::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: radial-gradient(ellipse at top, #00ff00 0%, transparent 80%);
+  opacity: 0.5;
+}
 #projects .projects {
 	flex-direction: column;
 	max-width: 1200px;
@@ -433,11 +464,16 @@ p {
 
 /* About Section */
 #about .about {
-	flex-direction: column-reverse;
-	text-align: center;
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 100px 20px;
+  flex-direction: column-reverse;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(0, 255, 0, 0.2);
+  padding: 30px;
+  max-width: 1300px; 
+  margin: 0 auto;
+  padding: 50px;
 }
 #about .col-left {
 	width: 250px;
@@ -501,20 +537,27 @@ p {
 }
 #contact .contact-item {
 	width: 80%;
-	padding: 20px;
-	text-align: center;
-	border-radius: 10px;
 	padding: 30px;
+	align-items: center; 
+	text-align: center;
+	word-break: break-all;
+	background: rgba(255, 255, 255, 0.05);
+	backdrop-filter: blur(5px);
+	border-radius: 10px;
 	margin: 30px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	box-shadow: 0px 0px 18px 0 crimson;
-	transition: 0.3s ease box-shadow;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	box-shadow: 0px 0px 30px 0 rgba(0, 255, 0, 0.5); 
+	color: #00ff00;
+	transition: 0.3s ease box-shadow, 0.3s ease transform, 0.3s ease border;
 }
 #contact .contact-item:hover {
-	box-shadow: 0px 0px 5px 0 #0000002c;
+	box-shadow: 0px 0px 40px 0 #00ff00;
+	border: 1px solid #ffffff;
+	transform: translateY(-5px);
 }
 #contact .icon {
 	width: 70px;
@@ -531,12 +574,16 @@ p {
 	font-size: 1.3rem;
 	line-height: 2rem;
 	font-weight: 500;
+	overflow-wrap: break-word;
+	word-break: break-word;
+
 }
 /*End contact Section */
 
 /* Footer */
 #footer {
-	background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+	background: rgba(0, 0, 0, 0.3);
+	backdrop-filter: blur(3px); 
 }
 #footer .footer {
 	min-height: 200px;
@@ -753,7 +800,7 @@ p {
 .copied-feedback {
 	opacity: 0;
 	transition: opacity 0.5s ease-in-out;
-	color: black;
+	color: #00ff00;
   }
   
   .copied-feedback.show {

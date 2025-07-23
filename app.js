@@ -119,12 +119,16 @@ function initParticles() {
 window.onload = initParticles;
 
 // Reinitialize particles on window resize
-let resizeTimeout;
-window.addEventListener("resize", function() {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(() => {
-    initParticles();
-  }, 300);
+let currentWidth = window.innerWidth;
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth !== currentWidth) {
+    currentWidth = window.innerWidth;
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      initParticles();
+    }, 300);
+  }
 });
 
 // Enable click-to-copy for contact items
