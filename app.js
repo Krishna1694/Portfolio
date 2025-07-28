@@ -35,7 +35,7 @@ function initParticles() {
 	let particleSettings = {
 		particles: {
 			number: {
-				value: 130, 
+				value: 70, 
 				density: {
 					enable: true,
 					value_area: 800
@@ -98,15 +98,15 @@ function initParticles() {
 
 	// Adjust particle settings based on screen size
 	if (window.innerWidth < 768) {  // Small screens
-		particleSettings.particles.number.value = 80;
-		particleSettings.particles.size.value = 3;
-		particleSettings.particles.move.speed = 5;
-	} else if (window.innerWidth < 1024) { // Medium screens
 		particleSettings.particles.number.value = 100;
 		particleSettings.particles.size.value = 3;
 		particleSettings.particles.move.speed = 5;
+	} else if (window.innerWidth < 1024) { // Medium screens
+		particleSettings.particles.number.value = 125;
+		particleSettings.particles.size.value = 3;
+		particleSettings.particles.move.speed = 5;
 	} else { // Large screens
-		particleSettings.particles.number.value = 130;
+		particleSettings.particles.number.value = 150;
 		particleSettings.particles.size.value = 3;
 		particleSettings.particles.move.speed = 5;
 	}
