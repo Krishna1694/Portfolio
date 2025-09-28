@@ -1,235 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Abhinav K. | Portfolio</title>
   <link rel="stylesheet" href="style.css">
-  <title>Abhiavs's Portfolio</title>
 </head>
-
 <body>
+  <!-- Background solid layer -->
+  <div class="background-layer"></div>
+
+  <!-- Matrix binary rain -->
   <canvas id="matrix"></canvas>
-  <!-- Header -->
-  <section id="header">
-    <div class="header container">
-      <div class="nav-bar">
-        <div class="brand">
-          <a href="#hero">
-            <h1><span>Abhinav</span> Krishna</h1>
-          </a>
-        </div>
-        <div class="nav-list">
-          <div class="hamburger">
-            <div class="bar"></div>
-          </div>
-          <ul>
-            <li><a href="#hero" data-after="Home">Home</a></li>
-            <!--<li><a href="#services" data-after="Service">Services</a></li>-->
-            <li><a href="#projects" data-after="Projects">Projects</a></li>
-            <li><a href="#about" data-after="About">About</a></li>
-            <li><a href="#contact" data-after="Contact">Contact</a></li>
-          </ul>
+
+  <!-- Content layer -->
+  <div class="site-layer">
+    <!-- Header / nav bar -->
+    <header class="site-header" id="siteHeader">
+      <a href="#home" class="logo">Abhinav Krishna Kunchala</a>
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <button id="themeToggle">🌙</button>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+      <!--<div class="hero-bg"></div> -->
+      <div class="hero-content">
+        <h1>Abhinav K. — Cybersecurity</h1>
+        <p>Cybersecurity Professional | Ethical Hacker | Purple Teaming</p>
+        <div class="buttons">
+          <a href="#projects" class="btn primary">See Projects</a>
+          <a href="#contact" class="btn secondary">Contact</a>
         </div>
       </div>
-    </div>
-  </section>
-  <!-- End Header -->
+    </section>
 
+    <!-- About -->
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        Cybersecurity professional with hands-on experience in penetration testing, vulnerability
+        assessment, and secure coding. Skilled in tools like Nmap, Burp Suite, Metasploit, and
+        Wireshark, and experienced with CTFs, ethical hacking, and Python scripting.
+      </p>
+    </section>
 
-  <!-- Hero Section  -->
-  <section id="hero">
-    <div id="particles-js"></div>
-    <script src="particles.js"></script>
-    <div class="hero container">
-      <div>
-        <h1>Hello, <span></span></h1>
-        <h1>My Name is <span></span></h1>
-        <h1>Abhinav <span></span></h1>
-        <!--<a href="#projects" type="button" class="cta">Portfolio</a>-->
+    <!-- Projects -->
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="project-card">
+        <img src="project1.jpg" alt="Project 1" loading="lazy">
+        <p>Automated Vulnerability Scanner</p>
       </div>
-    </div>
-  </section>
-  <!-- End Hero Section  -->
-
-  <!-- Service Section 
-  <section id="services" class="alt-section" >
-    <div class="services container">
-      <div class="service-top">
-        <h1 class="section-title">Serv<span>i</span>ces</h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum deleniti maiores pariatur assumenda quas
-          magni et, doloribus quod voluptate quasi molestiae magnam officiis dolorum, dolor provident atque molestias
-          voluptatum explicabo!</p>
+      <div class="project-card">
+        <img src="project2.jpg" alt="Project 2" loading="lazy">
+        <p>Zion — Jarvis-like AI Assistant</p>
       </div>
-      <div class="service-bottom">
-        <div class="service-item">
-          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/services.png" /></div>
-          <h2>Web Design</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis debitis rerum, magni voluptatem sed
-            architecto placeat beatae tenetur officia quod</p>
-        </div>
-        <div class="service-item">
-          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/services.png" /></div>
-          <h2>Web Design</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis debitis rerum, magni voluptatem sed
-            architecto placeat beatae tenetur officia quod</p>
-        </div>
-        <div class="service-item">
-          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/services.png" /></div>
-          <h2>Web Design</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis debitis rerum, magni voluptatem sed
-            architecto placeat beatae tenetur officia quod</p>
-        </div>
-        <div class="service-item">
-          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/services.png" /></div>
-          <h2>Web Design</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis debitis rerum, magni voluptatem sed
-            architecto placeat beatae tenetur officia quod</p>
-        </div>
-      </div>
-    </div>
-  </section>
-   End Service Section -->
+    </section>
 
-  <!--Projects Section-->
-  <section id="projects" class="alt-section" >
-    <div class="projects container">
-      <div class="projects-header">
-        <h1 class="section-title">Recent <span>Projects</span></h1>
-      </div>
-      <div class="all-projects">
-        <div class="project-item">
-          <div class="project-info">
-            <h1>AI-Assistant</h1>
-            <h2>JARVIS-like Voice Assistant</h2>
-            <p>Zion is an offline, privacy-focused voice assistant built using Python. It features real-time speech
-              recognition, intelligent voice responses, and efficient command execution – all powered locally using 
-              openhermes and Ollama for a JARVIS-like experience.</p>
+    <!-- Contact -->
+    <footer id="contact">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:kunchala.abhinavkrishna@gmail.com">kunchala.abhinavkrishna@gmail.com</a></p>
+      <p>LinkedIn: <a href="https://linkedin.com/in/abhinav-krishna-kunchala" target="_blank">linkedin.com/in/abhinav-krishna-kunchala</a></p>
+      <p>GitHub: <a href="https://github.com/Krishna1694" target="_blank">github.com/Krishna1694</a></p>
+      <p>© 2025 Abhinav K. | Connect with me</p>
+    </footer>
+  </div>
 
-          </div>
-          <div class="project-img">
-            <a href="https://github.com/Krishna1694/AI-Assistant" target="_blank" rel="noopener noreferrer" >
-              <img src="img/zionpic2.jpg" alt="AI-Assistant img with link" >
-            </a>
-          </div>
-        </div>
-        <div class="project-item">
-          <div class="project-info">
-            <h1>Cipherus</h1>
-            <h2>File Encryption/Decryption Tool</h2>
-            <p><strong>Cipherus</strong> is a powerful, personal encryption tool built with precision and pride. 
-              At its core, Cipherus uses Fernet encryption, which combines AES-128 (CBC mode) with HMAC-SHA256, 
-              ensuring both confidentiality and integrity of your files. It’s layered with signature checks, optional obfuscation, 
-              and foolproof validation to prevent misuse or tampering.</p>
-
-          </div>
-          <div class="project-img">
-            <a href="https://github.com/Krishna1694/Cipherus" alt="Cipherus img with link" target="_blank" rel="noopener noreferrer" >
-              <img src="img/Cipherus .png" alt="Click to open in github">
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
- <!--End Projects Section -->
-
-  <!-- About Section -->
-  <section id="about" class="alt-section" >
-    <div class="about container">
-      <div class="col-left">
-        <div class="about-img">
-          <img src="./img/About-me.jpeg" alt="img" loading="lazy">
-        </div>
-      </div>
-      <div class="col-right">
-        <h1 class="section-title">About <span>me</span></h1>
-        <h2>Cybersecurity Aspirant</h2>
-        <p>I'm Abhinav Kunchala — a cybersecurity enthusiast and 
-          AI developer who enjoys thinking like a hacker to outsmart threats before they cause harm.
-        I'm driven by curiosity, a love for digital puzzles, 
-        and the thrill of figuring out how things break (and how to catch it when they do).</p>
-
-        <p>Rather than building tools, I’m more into exploiting, investigating, and playing digital detective — 
-          digging into systems, spotting weaknesses, and connecting the dots others miss. 
-          Whether it’s tracing an exploit path or analyzing suspicious behavior, I enjoy the hunt.</p>
-
-        <p>One of my passion projects is Zion — an AI assistant not just built for tasks, 
-          but as a smart, talkative buddy, kind of like my own version of Jarvis.</p>
-
-        <p>Ultimately, I’m working toward purple teaming and threat hunting — 
-          where offense meets defense, and every mystery leads to a stronger, smarter response.</p>
-
-        <div class="thm-badge">
-          <iframe 
-            src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=2434696" 
-            title="TryHackMe Badge"
-            loading="lazy">
-          </iframe>
-        </div>
-        <a href="./Files/Abhinav_Resume.pdf" class="cta" download>Download Resume</a>
-      </div>
-    </div>
-  </section>
-  <!-- End About Section -->
-
-  <!-- Contact Section -->
-  <section id="contact" class="alt-section" >
-    <div class="contact container">
-      <div>
-        <h1 class="section-title">Contact <span>info</span></h1>
-      </div>
-      <div class="contact-items">
-        <div class="contact-item">
-          <div class="icon"><img src="https://img.icons8.com/?size=100&id=jShwZ2RCyPSO&format=png&color=00ff00" /></div>
-          <div class="contact-info">
-            <h1>Phone</h1>
-            <h2>+91 8247429822</h2>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="icon"><img src="https://img.icons8.com/?size=100&id=YRRhCXfA0Vd0&format=png&color=00ff00" /></div>
-          <div class="contact-info">
-            <h1>Email</h1>
-            <h2>kunchala.abhinavkrishna@gmail.com</h2>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="icon"><img src="https://img.icons8.com/?size=100&id=8212&format=png&color=00ff00" /></div>
-          <div class="contact-info">
-            <h1>Address</h1>
-            <h2>Hyderabad, Telangana</h2>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End Contact Section -->
-
-  <!-- Footer -->
-  <section id="footer">
-    <div class="footer container">
-      <div class="brand">
-        <h1><span>Abhinav</span> Krishna</h1>
-      </div>
-      <h2>Other Platforms!!</h2>
-      <div class="social-icon">
-        <div class="social-item">
-          <a href="https://www.linkedin.com/in/abhinav-krishna-kunchala/" target="_blank"> <img src="./img/icon linkedin.png" /> </a>
-        </div>
-        <div class="social-item">
-          <a href="https://github.com/Krishna1694"> <img src="./img/icon github.png" /> </a>
-        </div>        
-        <div class="social-item">
-          <a href="https://tryhackme.com/p/Vigi169"> <img src="./img/icon tryhackme.png " /> </a>
-        </div>
-      </div>
-      <p>Let’s connect and explore opportunities together!</p>
-    </div>
-  </section>
-  <!-- End Footer -->
-  <script src="./app.js"></script>
-  <script src="./matrix.js"></script>
+  <!-- <script src="matrix.js"></script> -->
+  <script src="theme.js"></script>
+  <script src="navbar.js"></script>
 </body>
-
 </html>
