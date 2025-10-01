@@ -451,7 +451,6 @@ body.dark .project-card:hover {
   margin: 0 auto;
   width: 90%;
 }
-
 /* Section Title */
 .section-title {
   font-size: 2rem;
@@ -460,7 +459,6 @@ body.dark .project-card:hover {
   text-align: center;
   color: var(--color-text);
 }
-
 /* Cards container */
 .contact-items {
   width: 100%;
@@ -469,7 +467,6 @@ body.dark .project-card:hover {
   justify-content: space-evenly;
   gap: 2rem;
 }
-
 /* Individual Card */
 .contact-item {
   width: 80%;
@@ -488,7 +485,7 @@ body.dark .project-card:hover {
   box-shadow: 0px 0px 30px 0 rgba(124, 77, 255, 0.3);
   color: var(--color-text);
   cursor: pointer;
-  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, border 0.15s ease-out;
+  transition: opacity 0.6s ease, transform 0.6s ease; 
   opacity: 0;
   transform: translateY(50px);
 }
