@@ -5,7 +5,7 @@ html { scroll-behavior: smooth; }
 
 /* Theme variables */
 :root {
-  --color-bg: #fdfdfd;
+  --color-bg: #fafafa;
   --color-text: #0F172A;
   --color-muted: #6B7280;
   --color-accent: #7C4DFF;
