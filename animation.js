@@ -139,3 +139,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+
+// Project Section 
+document.addEventListener("DOMContentLoaded", () => {
+  const projectCards = document.querySelectorAll(".project-card");
+
+  function handleProjectReveal() {
+    const windowHeight = window.innerHeight;
+    projectCards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      if (rect.top <= windowHeight * 0.85) {
+        card.classList.add("visible");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", handleProjectReveal);
+  handleProjectReveal(); // Trigger on load
+});
