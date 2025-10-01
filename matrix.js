@@ -12,18 +12,24 @@ const messages = [
 ];
 
 const fontSize = 16;
-const columns = canvas.width / fontSize;
-const drops = Array(Math.floor(columns)).fill(1);
+let columns = Math.floor(canvas.width / fontSize);
+let drops = Array(columns).fill(1);
 
 let currentMessage = messages[Math.floor(Math.random() * messages.length)];
 let msgIndex = 0;
 
+function getCssVar(name) {
+  return getComputedStyle(document.body).getPropertyValue(name).trim();
+}
+
 function draw() {
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+  // Use dynamic theme fade background
+  ctx.fillStyle = getCssVar("--matrix-bg");
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  ctx.fillStyle = '#0F0';
-  ctx.font = fontSize + 'px monospace';
+  // Use dynamic text color
+  ctx.fillStyle = getCssVar("--matrix-color");
+  ctx.font = fontSize + "px monospace";
 
   drops.forEach((y, i) => {
     const text = currentMessage[msgIndex];
@@ -31,7 +37,6 @@ function draw() {
 
     msgIndex++;
     if (msgIndex >= currentMessage.length) {
-      // Pick a new random message when done
       currentMessage = messages[Math.floor(Math.random() * messages.length)];
       msgIndex = 0;
     }
@@ -45,7 +50,36 @@ function draw() {
 
 setInterval(draw, 33);
 
-window.addEventListener('resize', () => {
+window.addEventListener("resize", () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+  columns = Math.floor(canvas.width / fontSize);
+  drops = Array(columns).fill(1);
 });
+
+/* Overlay for spotlight effect */
+const overlay = document.getElementById('matrix-overlay');
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+
+window.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function animateOverlay() {
+  if (document.body.classList.contains('dark')) {
+    // Dark mode → reveal circle
+    overlay.style.maskImage = `radial-gradient(circle 200px at ${mouseX}px ${mouseY}px, transparent 60%, black 100%)`;
+    overlay.style.webkitMaskImage = `radial-gradient(circle 200px at ${mouseX}px ${mouseY}px, transparent 60%, black 100%)`;
+  } else {
+    // Light mode → hide circle
+    overlay.style.maskImage = `radial-gradient(circle 200px at ${mouseX}px ${mouseY}px, black 60%, transparent 100%)`;
+    overlay.style.webkitMaskImage = `radial-gradient(circle 200px at ${mouseX}px ${mouseY}px, black 60%, transparent 100%)`;
+  }
+
+  requestAnimationFrame(animateOverlay);
+}
+
+animateOverlay();
+
