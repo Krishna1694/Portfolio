@@ -5,18 +5,24 @@ html { scroll-behavior: smooth; }
 
 /* Theme variables */
 :root {
-  --color-bg: #F8FAFC;
+  --color-bg: #fdfdfd;
   --color-text: #0F172A;
   --color-muted: #6B7280;
   --color-accent: #7C4DFF;
   --color-primary: #7C4DFF;
-  --matrix-color: rgba(124,77,255,0.8);
+  --matrix-bg-light: rgba(248, 250, 252, 0.05); /* light mode fade */
+  --matrix-bg-dark: rgba(0, 0, 0, 0.05);       /* dark mode fade */
+  --matrix-color: #7C4DFF;                     /* binary color */
 }
 body.dark {
   --color-bg: #071020;
   --color-text: #E6EEF8;
   --color-muted: #94A3B8;
-  --matrix-color: rgba(124,77,255,0.95);
+  --matrix-bg: var(--matrix-bg-dark);  /* dark mode */
+  --matrix-color: rgba(124,77,255,0.95); /* brighter purple */;
+}
+body:not(.dark) {
+  --matrix-bg: var(--matrix-bg-light);
 }
 
 /* Background */
@@ -33,9 +39,33 @@ body.dark {
   inset: 0;
   width: 100%;
   height: 100%;
-  z-index: 0; 
+  z-index: -2; 
   pointer-events: none;
 }
+
+/* Overlay for spotlight effect */
+#matrix-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--color-bg);
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+}
+/* Dark mode → reveal spotlight */
+body.dark #matrix-overlay {
+  mask-image: radial-gradient(circle 150px at center, transparent 60%, black 100%);
+  -webkit-mask-image: radial-gradient(circle 150px at center, transparent 60%, black 100%);
+}
+/* Light mode → hide spotlight */
+body:not(.dark) #matrix-overlay {
+  mask-image: radial-gradient(circle 150px at center, black 60%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle 150px at center, black 60%, transparent 100%);
+}
+
 
 /* Content */
 .site-layer {
@@ -104,13 +134,7 @@ body.dark {
   padding-top: 70px; 
   overflow: hidden;
   z-index: 1; 
-}
-.hero-bg {
-  position: relative;
-  inset: 0;
-  background: url("img/header_bg.jpg") center/cover no-repeat;
-  opacity: 0.25;
-  z-index: 0; 
+  /*background: url("img/header_bg.jpg") center/cover no-repeat;*/
 }
 .hero-content {
   position: relative;
