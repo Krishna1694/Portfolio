@@ -156,5 +156,54 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   window.addEventListener("scroll", handleProjectReveal);
-  handleProjectReveal(); // Trigger on load
+  handleProjectReveal(); 
+});
+
+// Contact Section
+document.addEventListener("DOMContentLoaded", () => {
+  const contactCards = document.querySelectorAll(".contact-item");
+
+  // Lazy reveal on scroll
+  function handleContactReveal() {
+    const windowHeight = window.innerHeight;
+    contactCards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      if (rect.top <= windowHeight * 0.85) {
+        card.classList.add("visible");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", handleContactReveal);
+  handleContactReveal(); // trigger on load
+
+  // Click to copy with glitch effect
+  contactCards.forEach(card => {
+    let busy = false; // prevent spam
+
+    card.addEventListener("click", async () => {
+      if (busy) return;
+      busy = true;
+
+      const info = card.dataset.copy;
+      const infoParagraph = card.querySelector(".contact-info p");
+      if (!info || !infoParagraph) return;
+
+      try {
+        await navigator.clipboard.writeText(info);
+      } catch (err) {
+        console.error("Clipboard copy failed", err);
+      }
+
+      const originalText = infoParagraph.textContent;
+      infoParagraph.textContent = "Copied!";
+      infoParagraph.style.animation = "glitch-copy 0.6s ease";
+
+      setTimeout(() => {
+        infoParagraph.textContent = originalText;
+        infoParagraph.style.animation = "";
+        busy = false;
+      }, 1200);
+    });
+  });
 });
