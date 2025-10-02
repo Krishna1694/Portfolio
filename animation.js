@@ -1,3 +1,11 @@
+// Hamburger menu
+const menuBtn = document.getElementById("menuToggle");
+const navLinks = document.querySelector(".nav-links");
+
+menuBtn.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+});
+
 // Lazy scroll reveal for sections
 document.addEventListener("DOMContentLoaded", () => {
   const aboutContainers = document.querySelectorAll(".about-container");
