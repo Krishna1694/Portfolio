@@ -486,6 +486,111 @@ body.dark .project-card:hover {
   --team-color: rgba(155, 89, 182, 0.7);
 }
 
+/* Certifications Section */
+.cert-simple {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+.cert-simple__title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--color-text);
+}
+.cert-simple__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+.cert-simple__card {
+  background: rgba(255, 255, 255, 0.08); /* semi-transparent glass */
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 1rem;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid transparent;
+}
+body.dark .cert-simple__card {
+  background: rgba(7,16,32,0.3);
+  border: 1px solid rgba(124,77,255,0.2);
+}
+.cert-simple__card img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 0.8rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  object-fit: contain;
+}
+.cert-simple__card:hover img {
+  transform: scale(1.05);
+}
+.cert-simple__card h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+/* Glow border */
+.cert-simple__card:hover {
+  box-shadow: 0 0 20px var(--color-accent);
+  border: 1px solid var(--color-accent);
+}
+/* Modal */
+.cert-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.cert-modal[aria-hidden="false"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+.cert-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+}
+.cert-modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  z-index: 10;
+}
+.cert-modal-content img {
+  width: 100%;
+  height: auto;
+  max-height: 90vh;
+  border-radius: 16px;
+  display: block;
+}
+.cert-modal-close {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  font-size: 2rem;
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  z-index: 20;
+}
+
 /* Contact Section */
 .contact-section {
   padding: 100px 2rem;

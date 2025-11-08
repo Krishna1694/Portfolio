@@ -215,3 +215,38 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// Certification
+document.addEventListener("DOMContentLoaded", () => {
+  const certCards = document.querySelectorAll('.cert-simple__card:not(.cert-simple__card--placeholder)');
+  const modal = document.getElementById('certModal');
+  const modalImg = document.getElementById('certModalImage');
+  const modalClose = document.querySelector('.cert-modal-close');
+
+  certCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const img = card.querySelector('img');
+      if (!img) return;
+      modalImg.src = img.src;
+      modal.setAttribute('aria-hidden', 'false');
+      // Lock background scroll
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeModal() {
+    modal.setAttribute('aria-hidden', 'true');
+    modalImg.src = '';
+    document.body.style.overflow = '';
+  }
+
+  modalClose.addEventListener('click', closeModal);
+  modal.querySelector('.cert-modal-backdrop').addEventListener('click', closeModal);
+
+  // Optional: Esc key to close modal
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
+      closeModal();
+    }
+  });
+});
